@@ -13,19 +13,15 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost/jobby?createDatabaseIfNotExist=true
     url: jdbc:mysql://localhost:3306/jobby?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
-
-# =================================
-# = Logging
-# =================================
-logging:
-  level:
-    org.springframework: INFO
-    org.flywaydb: INFO
+  jpa:
+    hibernate:
+      ddl-auto: update
+    jpa:
+      show-sql: true
 
 # =================================
 # = Swagger
@@ -38,4 +34,4 @@ springdoc:
     operationsSorter: method
     disable-swagger-default-url: true
     use-root-path: true
-  packagesToScan: org.generation.app_hopemarket.controller
+  packagesToScan: package br.com.groupfive.jobby.controller

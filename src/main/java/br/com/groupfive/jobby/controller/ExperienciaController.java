@@ -1,10 +1,10 @@
 package br.com.groupfive.jobby.controller;
 
-import br.com.groupfive.jobby.controller.interfaces.IEnderecoController;
-import br.com.groupfive.jobby.dto.endereco.CreateEnderecoDTO;
-import br.com.groupfive.jobby.dto.endereco.EnderecoDTO;
-import br.com.groupfive.jobby.dto.endereco.UpdateEnderecoDTO;
-import br.com.groupfive.jobby.service.interfaces.IEnderecoService;
+import br.com.groupfive.jobby.controller.interfaces.IExperienciaController;
+import br.com.groupfive.jobby.dto.experiencia.CreateExperienciaDTO;
+import br.com.groupfive.jobby.dto.experiencia.ExperienciaDTO;
+import br.com.groupfive.jobby.dto.experiencia.UpdateExperienciaDTO;
+import br.com.groupfive.jobby.service.interfaces.IExperienciaService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +13,11 @@ import static br.com.groupfive.jobby.utils.ResponseEntityUtils.*;
 import static java.util.Objects.isNull;
 
 @RestController
-@RequestMapping("endereco")
-public class EnderecoController implements IEnderecoController<Integer> {
+@RequestMapping("experiencia")
+public class ExperienciaController implements IExperienciaController<Integer> {
+    private final IExperienciaService<Integer> service;
 
-    private final IEnderecoService<Integer> service;
-
-    public EnderecoController(IEnderecoService<Integer> service) {
+    public ExperienciaController(IExperienciaService<Integer> service) {
         this.service = service;
     }
 
@@ -29,15 +28,15 @@ public class EnderecoController implements IEnderecoController<Integer> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<EnderecoDTO> findById(@PathParam("id") Integer id) {
+    public ResponseEntity<ExperienciaDTO> findById(@PathParam("id") Integer id) {
         var dto = service.findById(id);
         return isNull(dto) ? notFound() : ok(dto);
     }
 
     @Override
     @PostMapping
-    public ResponseEntity<EnderecoDTO> create(@RequestBody CreateEnderecoDTO createEnderecoDTO) {
-        var dto = service.create(createEnderecoDTO);
+    public ResponseEntity<ExperienciaDTO> create(@RequestBody CreateExperienciaDTO createExperienciaDTO) {
+        var dto = service.create(createExperienciaDTO);
         return isNull(dto) ? unaprocessableEntity() : created(dto);
     }
 
@@ -45,10 +44,10 @@ public class EnderecoController implements IEnderecoController<Integer> {
     @Override
     @PutMapping("/{id}")
     public ResponseEntity update(
-        @RequestBody UpdateEnderecoDTO updateEnderecoDTO,
+        @RequestBody UpdateExperienciaDTO updateExperienciaDTO,
         @PathParam("id") Integer id
     ) {
-        var updated = service.update(updateEnderecoDTO, id);
+        var updated = service.update(updateExperienciaDTO, id);
         return updated ? noContent(null) : notFound();
     }
 

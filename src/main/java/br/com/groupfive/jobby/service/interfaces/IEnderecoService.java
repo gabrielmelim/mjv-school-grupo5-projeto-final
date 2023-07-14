@@ -6,8 +6,7 @@ import br.com.groupfive.jobby.dto.endereco.UpdateEnderecoDTO;
 
 public interface IEnderecoService<T> {
     EnderecoDTO findById(T id);
-    EnderecoDTO findByName(String name);
     EnderecoDTO create(CreateEnderecoDTO createEnderecoDTO);
-    boolean update(UpdateEnderecoDTO updateEnderecoDTO);
+    boolean update(UpdateEnderecoDTO updateEnderecoDTO, Integer id);
     boolean deleteById(T id);
 }

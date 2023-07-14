@@ -1,9 +1,10 @@
 package br.com.groupfive.jobby.dto.endereco;
 
 public record UpdateEnderecoDTO(
-    String cep,
+    Long cep,
     String logradouro,
     String numero,
     String complemento,
-    String bairro
+    String bairro,
+    Integer idCidade
 ) {}

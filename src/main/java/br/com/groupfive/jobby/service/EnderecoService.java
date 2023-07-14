@@ -15,17 +15,12 @@ public class EnderecoService implements IEnderecoService<Integer> {
     }
 
     @Override
-    public EnderecoDTO findByName(String name) {
-        return null;
-    }
-
-    @Override
     public EnderecoDTO create(CreateEnderecoDTO createEnderecoDTO) {
         return null;
     }
 
     @Override
-    public boolean update(UpdateEnderecoDTO updateEnderecoDTO) {
+    public boolean update(UpdateEnderecoDTO updateEnderecoDTO, Integer id) {
         return false;
     }
 
