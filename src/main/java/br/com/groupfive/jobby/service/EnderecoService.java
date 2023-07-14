@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnderecoService implements IEnderecoService<Integer> {
 
-    public EnderecoService() {}
-
     @Override
     public EnderecoDTO findById(Integer id) {
         return null;

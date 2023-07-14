@@ -1,10 +1,10 @@
 package br.com.groupfive.jobby.controller;
 
-import br.com.groupfive.jobby.controller.interfaces.IEnderecoController;
-import br.com.groupfive.jobby.dto.endereco.CreateEnderecoDTO;
-import br.com.groupfive.jobby.dto.endereco.EnderecoDTO;
-import br.com.groupfive.jobby.dto.endereco.UpdateEnderecoDTO;
-import br.com.groupfive.jobby.service.interfaces.IEnderecoService;
+import br.com.groupfive.jobby.controller.interfaces.ICandidatoController;
+import br.com.groupfive.jobby.dto.candidato.CandidatoDTO;
+import br.com.groupfive.jobby.dto.candidato.CreateCandidatoDTO;
+import br.com.groupfive.jobby.dto.candidato.UpdateCandidatoDTO;
+import br.com.groupfive.jobby.service.interfaces.ICandidatoService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +13,12 @@ import static br.com.groupfive.jobby.utils.ResponseEntityUtils.*;
 import static java.util.Objects.isNull;
 
 @RestController
-@RequestMapping("endereco")
-public class EnderecoController implements IEnderecoController<Integer> {
+@RequestMapping("candidato")
+public class CandidatoController<T> implements ICandidatoController<Integer> {
 
-    private final IEnderecoService<Integer> service;
+    private final ICandidatoService<Integer> service;
 
-    public EnderecoController(IEnderecoService<Integer> service) {
+    public CandidatoController(ICandidatoService<Integer> service) {
         this.service = service;
     }
 
@@ -29,22 +29,22 @@ public class EnderecoController implements IEnderecoController<Integer> {
 
     @Override
     @GetMapping(params = "id")
-    public ResponseEntity<EnderecoDTO> findById(@PathParam("id") Integer id) {
+    public ResponseEntity<CandidatoDTO> findById(@PathParam("id") Integer id) {
         var dto = service.findById(id);
         return isNull(dto) ? notFound() : ok(dto);
     }
 
     @Override
     @GetMapping(params = "name")
-    public ResponseEntity<EnderecoDTO> findByName(String name) {
+    public ResponseEntity<CandidatoDTO> findByName(String name) {
         var dto = service.findByName(name);
         return isNull(dto) ? notFound() : ok(dto);
     }
 
     @Override
     @PostMapping
-    public ResponseEntity<EnderecoDTO> create(@RequestBody CreateEnderecoDTO createEnderecoDTO) {
-        var dto = service.create(createEnderecoDTO);
+    public ResponseEntity<CandidatoDTO> create(@RequestBody CreateCandidatoDTO createCandidatoDTO) {
+        var dto = service.create(createCandidatoDTO);
         return isNull(dto) ? unaprocessableEntity() : created(dto);
     }
 
@@ -52,10 +52,10 @@ public class EnderecoController implements IEnderecoController<Integer> {
     @Override
     @PutMapping(params = "id")
     public ResponseEntity update(
-        @RequestBody UpdateEnderecoDTO updateEnderecoDTO,
-        @PathParam("id") Integer id
+        @RequestBody UpdateCandidatoDTO updateCandidatoDTO,
+        @RequestParam("id") Integer id
     ) {
-        var updated = service.update(updateEnderecoDTO);
+        var updated = service.update(updateCandidatoDTO);
         return updated ? noContent(null) : notFound();
     }
 

@@ -9,6 +9,6 @@ public interface IEnderecoController<T> {
     ResponseEntity<EnderecoDTO> findById(T id);
     ResponseEntity<EnderecoDTO> findByName(String name);
     ResponseEntity<EnderecoDTO> create(CreateEnderecoDTO createEnderecoDTO);
-    ResponseEntity update(UpdateEnderecoDTO updateEnderecoDTO);
+    ResponseEntity update(UpdateEnderecoDTO updateEnderecoDTO, T id);
     ResponseEntity deleteById(T id);
 }

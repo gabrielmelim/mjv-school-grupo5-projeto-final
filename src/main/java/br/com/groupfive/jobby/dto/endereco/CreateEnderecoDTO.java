@@ -5,5 +5,7 @@ public record CreateEnderecoDTO (
     String logradouro,
     String numero,
     String complemento,
-    String bairro
+    String bairro,
+    Integer idCliente,
+    Integer idCidade
 ) {}
