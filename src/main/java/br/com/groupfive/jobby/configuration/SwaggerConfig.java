@@ -22,6 +22,6 @@ public class SwaggerConfig {
                                 .email("")))
                 .externalDocs(new ExternalDocumentation()
                         .description("GitHub Integrantes")
-                        .url("https://linktr.ee/gabrielmelim121325"));
+                        .url("NULL"));
     }
 }
