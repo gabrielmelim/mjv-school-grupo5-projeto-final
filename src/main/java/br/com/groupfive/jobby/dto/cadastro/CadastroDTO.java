@@ -26,10 +26,7 @@ public record CadastroDTO(
             cadastro.getNome(),
             cadastro.getCpf(),
             cadastro.getSexo().name(),
-            cadastro.getDataNascimento()
-                .toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate(),
+            cadastro.getDataNascimento(),
             cadastro.getTelefone(),
             cadastro.getEmail(),
             cadastro.getCelularProfissional().getNumero(),
