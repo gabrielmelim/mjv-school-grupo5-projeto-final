@@ -8,6 +8,7 @@ import br.com.groupfive.jobby.service.interfaces.ICidadeService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +34,7 @@ public class CidadeController implements ICidadeController<Integer> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<CidadeDTO> findById(@PathParam("id") Integer id) {
+    public ResponseEntity<CidadeDTO> findById(@PathVariable("id") Integer id) {
         var dto = service.findById(id);
         return isNull(dto) ? notFound() : ok(dto);
     }

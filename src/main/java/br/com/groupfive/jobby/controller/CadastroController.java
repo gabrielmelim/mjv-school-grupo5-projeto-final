@@ -31,7 +31,7 @@ public class CadastroController<T> implements ICadastroController<Integer> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<CadastroDTO> findById(@PathParam("id") Integer id) {
+    public ResponseEntity<CadastroDTO> findById(@PathVariable("id") Integer id) {
         var dto = service.findById(id);
         return isNull(dto) ? notFound() : ok(dto);
     }
@@ -55,7 +55,7 @@ public class CadastroController<T> implements ICadastroController<Integer> {
     @PutMapping("/{id}")
     public ResponseEntity update(
         @RequestBody UpdateCadastroDTO updateCadastroDTO,
-        @PathParam("id") Integer id
+        @PathVariable("id") Integer id
     ) {
         var updated = service.update(updateCadastroDTO, id);
         return updated ? noContent(null) : notFound();
@@ -63,7 +63,7 @@ public class CadastroController<T> implements ICadastroController<Integer> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathParam("id") Integer id) {
+    public ResponseEntity deleteById(@PathVariable("id") Integer id) {
         var deleted = service.deleteById(id);
         return deleted ? noContent(null) : notFound();
     }
