@@ -36,12 +36,12 @@ public class CadastroMapper {
         return cadastro;
     }
 
-    public static Cadastro fromUpdateCadastroDTOToEntity(
+    public static void fromUpdateCadastroDTOToEntity(
+            Cadastro cadastro,
             UpdateCadastroDTO updateCadastroDTO,
             Endereco endereco,
             Profissao profissao
     ) {
-        Cadastro cadastro = new Cadastro();
         PretencaoSalarial pretencaoSalarial = new PretencaoSalarial();
         Celular celularPessoal = new Celular();
         Celular celularProfissional = new Celular();
@@ -62,6 +62,5 @@ public class CadastroMapper {
         cadastro.setCelularProfissional(celularProfissional);
         cadastro.setProfissao(profissao);
         cadastro.setEndereco(endereco);
-        return cadastro;
     }
 }
