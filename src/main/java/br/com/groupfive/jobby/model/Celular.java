@@ -10,5 +10,5 @@ public class Celular {
     @Column(name = "cel_numero")
     private Long numero;
     @Column(name = "cel_numero_whats")
-    private boolean whatsapp;
+    private boolean isWhatsapp;
 }
