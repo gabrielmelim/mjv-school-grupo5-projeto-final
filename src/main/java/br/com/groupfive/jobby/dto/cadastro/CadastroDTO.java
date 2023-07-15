@@ -3,7 +3,6 @@ package br.com.groupfive.jobby.dto.cadastro;
 import br.com.groupfive.jobby.model.Cadastro;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 public record CadastroDTO(
         Integer id,
