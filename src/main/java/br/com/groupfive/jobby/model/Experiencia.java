@@ -36,8 +36,7 @@ public class CadastroExperiencia {
     @JoinColumn(name = "id_cadastro")
     private Cadastro cadastro;
 
-    @ManyToOne
-    @JoinColumn(name = "id_empresa")
+    @Embedded
     private Empresa empresa;
 
     @ManyToOne
