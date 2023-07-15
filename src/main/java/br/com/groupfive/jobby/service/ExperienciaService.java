@@ -14,6 +14,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class ExperienciaService implements IExperienciaService<Integer> {
     @Autowired
@@ -37,6 +39,7 @@ public class ExperienciaService implements IExperienciaService<Integer> {
         Experiencia experienciaModel = new Experiencia();
 
         BeanUtils.copyProperties(createExperienciaDTO, experienciaModel);
+        experienciaModel.setSalario(BigDecimal.valueOf(createExperienciaDTO.salario()));
         experienciaModel.setCadastro(cadastroRepository.findById(createExperienciaDTO.idCadastro()).get());
         experienciaModel.setProfissao(profissaoRepository.findById(createExperienciaDTO.idProfissao()).get());
         RegimeContratacao regimeContratacao = RegimeContratacao.valueOf(createExperienciaDTO.regimeContratacao());
@@ -51,6 +54,7 @@ public class ExperienciaService implements IExperienciaService<Integer> {
         if(experienciaRepository.existsById(id)){
             Experiencia experienciaModel = experienciaRepository.findById(id).get();
             BeanUtils.copyProperties(updateExperienciaDTO, experienciaModel);
+            experienciaModel.setSalario(BigDecimal.valueOf(updateExperienciaDTO.salario()));
             experienciaModel.setProfissao(profissaoRepository.findById(updateExperienciaDTO.idProfissao()).get());
             RegimeContratacao regimeContratacao = RegimeContratacao.valueOf(updateExperienciaDTO.regimeContratacao());
             experienciaModel.setRegimeContratacao(regimeContratacao);
