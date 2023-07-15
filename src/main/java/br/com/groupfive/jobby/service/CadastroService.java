@@ -55,14 +55,15 @@ public class CadastroService implements ICadastroService<Integer> {
     @Override
     public boolean update(UpdateCadastroDTO updateCadastroDTO, Integer id) {
         if(cadastroRepository.existsById(id)){
-            Cadastro cadastroModel = CadastroMapper
-                .fromUpdateCadastroDTOToEntity(updateCadastroDTO,
+            Cadastro cadastro = cadastroRepository.findById(id).get();
+            CadastroMapper.fromUpdateCadastroDTOToEntity(
+                cadastro,
+                updateCadastroDTO,
                 enderecoRepository.findById(updateCadastroDTO.idEndereco()).get(),
-                profissaoRepository.findById(updateCadastroDTO.idProfissao()).get());
-
-            cadastroRepository.save(cadastroModel);
+                profissaoRepository.findById(updateCadastroDTO.idProfissao()).get()
+            );
+            cadastroRepository.save(cadastro);
             return true;
-
         }else{
             return false;
         }

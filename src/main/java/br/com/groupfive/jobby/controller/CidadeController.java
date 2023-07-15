@@ -37,10 +37,10 @@ public class CidadeController implements ICidadeController<Integer> {
     }
 
     @Override
-    public ResponseEntity<CidadeDTO> create(CreateCidadeDTO createCidadeDTO) {
+    @PostMapping
+    public ResponseEntity<CidadeDTO> create(@RequestBody CreateCidadeDTO createCidadeDTO) {
         var dto = service.create(createCidadeDTO);
         return isNull(dto) ? unaprocessableEntity() : created(dto);
-
     }
 
     @Override
@@ -51,7 +51,6 @@ public class CidadeController implements ICidadeController<Integer> {
     ) {
         var updated = service.update(updateCidadeDTO, id);
         return updated ? noContent(null) : notFound();
-
     }
 
     @Override
