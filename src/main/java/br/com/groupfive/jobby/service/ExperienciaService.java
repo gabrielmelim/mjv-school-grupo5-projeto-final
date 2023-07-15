@@ -5,6 +5,7 @@ import br.com.groupfive.jobby.dto.experiencia.CreateExperienciaDTO;
 import br.com.groupfive.jobby.dto.experiencia.ExperienciaDTO;
 import br.com.groupfive.jobby.dto.experiencia.UpdateExperienciaDTO;
 import br.com.groupfive.jobby.model.Experiencia;
+import br.com.groupfive.jobby.model.RegimeContratacao;
 import br.com.groupfive.jobby.repository.CadastroRepository;
 import br.com.groupfive.jobby.repository.ExperienciaRepository;
 import br.com.groupfive.jobby.repository.ProfissaoRepository;
@@ -38,6 +39,8 @@ public class ExperienciaService implements IExperienciaService<Integer> {
         BeanUtils.copyProperties(createExperienciaDTO, experienciaModel);
         experienciaModel.setCadastro(cadastroRepository.findById(createExperienciaDTO.idCadastro()).get());
         experienciaModel.setProfissao(profissaoRepository.findById(createExperienciaDTO.idProfissao()).get());
+        RegimeContratacao regimeContratacao = RegimeContratacao.valueOf(createExperienciaDTO.regimeContratacao());
+        experienciaModel.setRegimeContratacao(regimeContratacao);
         experienciaRepository.save(experienciaModel);
 
         return ExperienciaDTO.fromModel(experienciaModel);
@@ -49,6 +52,9 @@ public class ExperienciaService implements IExperienciaService<Integer> {
             Experiencia experienciaModel = experienciaRepository.findById(id).get();
             BeanUtils.copyProperties(updateExperienciaDTO, experienciaModel);
             experienciaModel.setProfissao(profissaoRepository.findById(updateExperienciaDTO.idProfissao()).get());
+            RegimeContratacao regimeContratacao = RegimeContratacao.valueOf(updateExperienciaDTO.regimeContratacao());
+            experienciaModel.setRegimeContratacao(regimeContratacao);
+
             experienciaRepository.save(experienciaModel);
             return true;
         }else{
