@@ -28,7 +28,7 @@ public class ExperienciaController implements IExperienciaController<Integer> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<ExperienciaDTO> findById(@PathParam("id") Integer id) {
+    public ResponseEntity<ExperienciaDTO> findById(@PathVariable("id") Integer id) {
         var dto = service.findById(id);
         return isNull(dto) ? notFound() : ok(dto);
     }
@@ -45,7 +45,7 @@ public class ExperienciaController implements IExperienciaController<Integer> {
     @PutMapping("/{id}")
     public ResponseEntity update(
         @RequestBody UpdateExperienciaDTO updateExperienciaDTO,
-        @PathParam("id") Integer id
+        @PathVariable("id") Integer id
     ) {
         var updated = service.update(updateExperienciaDTO, id);
         return updated ? noContent(null) : notFound();
@@ -53,7 +53,7 @@ public class ExperienciaController implements IExperienciaController<Integer> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathParam("id") Integer id) {
+    public ResponseEntity deleteById(@PathVariable("id") Integer id) {
         var deleted = service.deleteById(id);
         return deleted ? noContent(null) : notFound();
     }

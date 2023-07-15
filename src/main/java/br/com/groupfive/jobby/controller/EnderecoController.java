@@ -29,7 +29,7 @@ public class EnderecoController implements IEnderecoController<Integer> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<EnderecoDTO> findById(@PathParam("id") Integer id) {
+    public ResponseEntity<EnderecoDTO> findById(@PathVariable("id") Integer id) {
         var dto = service.findById(id);
         return isNull(dto) ? notFound() : ok(dto);
     }
@@ -46,7 +46,7 @@ public class EnderecoController implements IEnderecoController<Integer> {
     @PutMapping("/{id}")
     public ResponseEntity update(
         @RequestBody UpdateEnderecoDTO updateEnderecoDTO,
-        @PathParam("id") Integer id
+        @PathVariable("id") Integer id
     ) {
         var updated = service.update(updateEnderecoDTO, id);
         return updated ? noContent(null) : notFound();
@@ -54,7 +54,7 @@ public class EnderecoController implements IEnderecoController<Integer> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathParam("id") Integer id) {
+    public ResponseEntity deleteById(@PathVariable("id") Integer id) {
         var deleted = service.deleteById(id);
         return deleted ? noContent(null) : notFound();
     }
