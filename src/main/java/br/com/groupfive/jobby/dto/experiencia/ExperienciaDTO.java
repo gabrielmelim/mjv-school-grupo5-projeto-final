@@ -1,6 +1,6 @@
 package br.com.groupfive.jobby.dto.experiencia;
 
-import br.com.groupfive.jobby.model.CadastroExperiencia;
+import br.com.groupfive.jobby.model.Experiencia;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -17,7 +17,7 @@ public record ExperienciaDTO (
     Integer idProfissao
 )
 {
-    public static ExperienciaDTO fromModel(CadastroExperiencia experiencia) {
+    public static ExperienciaDTO fromModel(Experiencia experiencia) {
         return new ExperienciaDTO(
             experiencia.getIdCadExperiencia(),
             experiencia.getSalario().doubleValue(),

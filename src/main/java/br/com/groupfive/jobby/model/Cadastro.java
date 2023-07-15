@@ -3,7 +3,7 @@ package br.com.groupfive.jobby.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -23,7 +23,7 @@ public class Cadastro {
     private String cpf;
 
     @Column(name = "data_nasc",nullable = false, length = 11)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(nullable = false, length = 11)
     private Long telefone;
@@ -70,8 +70,6 @@ public class Cadastro {
     @JoinColumn (name = "id_endereco")
     private Endereco endereco;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "regime_contrat",nullable = false)
-    private RegimeContratacao regimeContratacao;
+
 }
 

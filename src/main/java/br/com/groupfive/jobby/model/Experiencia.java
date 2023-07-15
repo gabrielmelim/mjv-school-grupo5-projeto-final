@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_cadastro_experiencia")
 @Data
-public class CadastroExperiencia {
+public class Experiencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -32,12 +32,16 @@ public class CadastroExperiencia {
     @Column(name = "data_desligamento",nullable = false)
     private Date dataDesligamento;
 
+    @Column(name = "nome_empresa",length = 60, nullable = false)
+    private String nomeEmpresa;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "regime_contrat",nullable = false)
+    private RegimeContratacao regimeContratacao;
+
     @ManyToOne
     @JoinColumn(name = "id_cadastro")
     private Cadastro cadastro;
-
-    @Embedded
-    private Empresa empresa;
 
     @ManyToOne
     @JoinColumn(name = "id_profissao")
