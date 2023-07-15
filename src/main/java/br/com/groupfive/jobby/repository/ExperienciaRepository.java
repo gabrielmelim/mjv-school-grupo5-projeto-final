@@ -1,10 +1,10 @@
 package br.com.groupfive.jobby.repository;
 
-import br.com.groupfive.jobby.model.CadastroExperiencia;
+import br.com.groupfive.jobby.model.Experiencia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExperienciaRepository extends JpaRepository<CadastroExperiencia, Integer> {
+public interface ExperienciaRepository extends JpaRepository<Experiencia, Integer> {
 
 }
