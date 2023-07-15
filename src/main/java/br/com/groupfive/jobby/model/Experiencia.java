@@ -1,13 +1,12 @@
 package br.com.groupfive.jobby.model;
 
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_cadastro_experiencia")
@@ -27,10 +26,10 @@ public class Experiencia {
     private boolean empregoAtual;
 
     @Column(name = "data_contratacao",nullable = false)
-    private Date dataContratacao;
+    private LocalDate dataContratacao;
 
-    @Column(name = "data_desligamento",nullable = false)
-    private Date dataDesligamento;
+    @Column(name = "data_desligamento")
+    private LocalDate dataDesligamento;
 
     @Column(name = "nome_empresa",length = 60, nullable = false)
     private String nomeEmpresa;
