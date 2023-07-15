@@ -42,7 +42,7 @@ public class Cadastro {
     @AttributeOverrides({
             @AttributeOverride(name="numero",
                      column = @Column(name="cel_num_pess")),
-            @AttributeOverride(name="whatsapp",
+            @AttributeOverride(name="isWhatsapp",
                     column = @Column(name="cel_is_whats_pess"))
     })
     private Celular celularPessoal;
@@ -51,7 +51,7 @@ public class Cadastro {
     @AttributeOverrides({
             @AttributeOverride(name="numero",
                     column = @Column(name="cel_num_prof")),
-            @AttributeOverride(name="whatsapp",
+            @AttributeOverride(name="isWhatsapp",
                     column = @Column(name="cel_is_whats_prof"))
     })
     private Celular celularProfissional;
