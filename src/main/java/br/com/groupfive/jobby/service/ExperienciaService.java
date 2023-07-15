@@ -1,30 +1,68 @@
 package br.com.groupfive.jobby.service;
 
+
 import br.com.groupfive.jobby.dto.experiencia.CreateExperienciaDTO;
 import br.com.groupfive.jobby.dto.experiencia.ExperienciaDTO;
 import br.com.groupfive.jobby.dto.experiencia.UpdateExperienciaDTO;
+import br.com.groupfive.jobby.model.Experiencia;
+import br.com.groupfive.jobby.repository.CadastroRepository;
+import br.com.groupfive.jobby.repository.ExperienciaRepository;
+import br.com.groupfive.jobby.repository.ProfissaoRepository;
 import br.com.groupfive.jobby.service.interfaces.IExperienciaService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ExperienciaService implements IExperienciaService<Integer> {
+    @Autowired
+    ExperienciaRepository experienciaRepository;
+    @Autowired
+    ProfissaoRepository profissaoRepository;
+    @Autowired
+    CadastroRepository cadastroRepository;
     @Override
     public ExperienciaDTO findById(Integer id) {
-        return null;
+        if(experienciaRepository.existsById(id)){
+            Experiencia experienciaModel = experienciaRepository.findById(id).get();
+            return ExperienciaDTO.fromModel(experienciaModel);
+        }else{
+            return null;
+        }
     }
 
     @Override
     public ExperienciaDTO create(CreateExperienciaDTO createExperienciaDTO) {
-        return null;
+        Experiencia experienciaModel = new Experiencia();
+
+        BeanUtils.copyProperties(createExperienciaDTO, experienciaModel);
+        experienciaModel.setCadastro(cadastroRepository.findById(createExperienciaDTO.idCadastro()).get());
+        experienciaModel.setProfissao(profissaoRepository.findById(createExperienciaDTO.idProfissao()).get());
+        experienciaRepository.save(experienciaModel);
+
+        return ExperienciaDTO.fromModel(experienciaModel);
     }
 
     @Override
     public boolean update(UpdateExperienciaDTO updateExperienciaDTO, Integer id) {
-        return false;
+        if(experienciaRepository.existsById(id)){
+            Experiencia experienciaModel = experienciaRepository.findById(id).get();
+            BeanUtils.copyProperties(updateExperienciaDTO, experienciaModel);
+            experienciaModel.setProfissao(profissaoRepository.findById(updateExperienciaDTO.idProfissao()).get());
+            experienciaRepository.save(experienciaModel);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean deleteById(Integer id) {
-        return false;
+        if(experienciaRepository.existsById(id)){
+            experienciaRepository.deleteById(id);
+            return true;
+        }else{
+            return false;
+        }
     }
 }
