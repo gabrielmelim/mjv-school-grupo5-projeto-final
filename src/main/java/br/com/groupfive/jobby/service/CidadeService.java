@@ -17,8 +17,12 @@ public class CidadeService implements ICidadeService<Integer> {
 
     @Override
     public CidadeDTO findById(Integer id) {
-        Cidade cidadeModel = cidadeRepository.findById(id).get();
-        return CidadeDTO.fromModel(cidadeModel);
+        if(cidadeRepository.existsById(id)){
+            Cidade cidadeModel = cidadeRepository.findById(id).get();
+            return CidadeDTO.fromModel(cidadeModel);
+        }else{
+            return null;
+        }
     }
 
     @Override
