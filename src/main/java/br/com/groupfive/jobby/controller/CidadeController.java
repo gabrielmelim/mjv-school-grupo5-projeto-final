@@ -7,10 +7,7 @@ import br.com.groupfive.jobby.dto.cidade.UpdateCidadeDTO;
 import br.com.groupfive.jobby.service.interfaces.ICidadeService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static br.com.groupfive.jobby.utils.ResponseEntityUtils.*;
 import static br.com.groupfive.jobby.utils.ResponseEntityUtils.created;
@@ -47,14 +44,19 @@ public class CidadeController implements ICidadeController<Integer> {
     }
 
     @Override
-    public ResponseEntity update(UpdateCidadeDTO updateCidadeDTO, Integer id) {
+    @PutMapping("/{id}")
+    public ResponseEntity update(
+        @RequestBody UpdateCidadeDTO updateCidadeDTO,
+        @PathVariable("id") Integer id
+    ) {
         var updated = service.update(updateCidadeDTO, id);
         return updated ? noContent(null) : notFound();
 
     }
 
     @Override
-    public ResponseEntity deleteById(Integer id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable Integer id) {
         var deleted = service.deleteById(id);
         return deleted ? noContent(null) : notFound();
     }
