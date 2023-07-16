@@ -14,14 +14,14 @@ public record EnderecoDTO(
     CidadeDTO cidade
 )
 {
-    public static EnderecoDTO fromModel(Endereco endereco, Cidade cidade) {
+    public static EnderecoDTO fromModel(Cadastro cadastro) {
         return new EnderecoDTO(
-            endereco.getCep(),
-            endereco.getLogradouro(),
-            endereco.getNumero(),
-            endereco.getComplemento(),
-            endereco.getBairro(),
-            CidadeDTO.fromModel(cidade)
+            cadastro.getEndereco().getCep(),
+            cadastro.getEndereco().getLogradouro(),
+            cadastro.getEndereco().getNumero(),
+            cadastro.getEndereco().getComplemento(),
+            cadastro.getEndereco().getBairro(),
+            CidadeDTO.fromModel(cadastro.getCidade())
         );
     }
 }

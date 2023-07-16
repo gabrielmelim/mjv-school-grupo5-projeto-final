@@ -23,8 +23,7 @@ public class EnderecoService implements IEnderecoService<Integer> {
     @Override
     public EnderecoDTO findById(Integer id) {
         if(cadastroRepository.existsById(id)){
-            var cadastro = cadastroRepository.findById(id).get();
-            return EnderecoDTO.fromModel(cadastro.getEndereco(), cidadeRepository.findById(cadastro.getEndereco().getIdCidade()).get());
+            return EnderecoDTO.fromModel(cadastroRepository.findById(id).get());
         }else{
             return null;
         }
