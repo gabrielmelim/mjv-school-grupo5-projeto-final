@@ -6,6 +6,7 @@ import br.com.groupfive.jobby.dto.cadastro.UpdateCadastroDTO;
 import br.com.groupfive.jobby.mapper.CadastroMapper;
 import br.com.groupfive.jobby.model.Cadastro;
 import br.com.groupfive.jobby.repository.CadastroRepository;
+import br.com.groupfive.jobby.repository.CidadeRepository;
 import br.com.groupfive.jobby.repository.ProfissaoRepository;
 import br.com.groupfive.jobby.service.interfaces.ICadastroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class CadastroService implements ICadastroService<Integer> {
     CadastroRepository cadastroRepository;
     @Autowired
     ProfissaoRepository profissaoRepository;
+    @Autowired
+    private CidadeRepository cidadeRepository;
 
     @Override
     public CadastroDTO findById(Integer id) {
@@ -42,7 +45,8 @@ public class CadastroService implements ICadastroService<Integer> {
             CadastroMapper
                 .fromCreateCadastroDTOToEntity(
                 createCadastroDTO,
-                profissaoRepository.findById(createCadastroDTO.idProfissao()).get()
+                profissaoRepository.findById(createCadastroDTO.idProfissao()).get(),
+                cidadeRepository.findById(createCadastroDTO.endereco().idCidade()).get()
             );
 
         cadastroRepository.save(cadastroModel);

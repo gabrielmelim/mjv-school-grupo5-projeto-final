@@ -66,6 +66,10 @@ public class Cadastro {
     @ElementCollection
     private List<String> habilidades;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_cidade")
+    private Cidade cidade;
+
     @Embedded
     private Endereco endereco;
 }

@@ -10,7 +10,8 @@ public class CadastroMapper {
 
     public static Cadastro fromCreateCadastroDTOToEntity(
         CreateCadastroDTO createCadastroDTO,
-        Profissao profissao
+        Profissao profissao,
+        Cidade cidade
     ) {
         Cadastro cadastro = new Cadastro();
         Endereco endereco = new Endereco();
@@ -36,6 +37,7 @@ public class CadastroMapper {
         cadastro.setHabilidades(createCadastroDTO.habilidades());
         BeanUtils.copyProperties(createCadastroDTO.endereco(), endereco);
         cadastro.setEndereco(endereco);
+        cadastro.setCidade(cidade);
         return cadastro;
     }
 
