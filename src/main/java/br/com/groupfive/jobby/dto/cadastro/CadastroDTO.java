@@ -1,8 +1,10 @@
 package br.com.groupfive.jobby.dto.cadastro;
 
+import br.com.groupfive.jobby.dto.profissao.ProfissaoDTO;
 import br.com.groupfive.jobby.model.Cadastro;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record CadastroDTO(
         Integer id,
@@ -17,7 +19,9 @@ public record CadastroDTO(
         Long numeroCelularPessoal,
         Boolean isWhatsPessoal,
         Double pretensaoMin,
-        Double pretensaoMax
+        Double pretensaoMax,
+        List habilidades,
+        ProfissaoDTO profissao
 ) {
     public static CadastroDTO fromModel(Cadastro cadastro) {
         return new CadastroDTO(
@@ -33,7 +37,9 @@ public record CadastroDTO(
             cadastro.getCelularPessoal().getNumero(),
             cadastro.getCelularPessoal().isWhatsapp(),
             cadastro.getPretencaoSalarial().getValorMinimo(),
-            cadastro.getPretencaoSalarial().getValorMaximo()
+            cadastro.getPretencaoSalarial().getValorMaximo(),
+            cadastro.getHabilidades(),
+            ProfissaoDTO.fromModel(cadastro.getProfissao())
         );
     }
 }

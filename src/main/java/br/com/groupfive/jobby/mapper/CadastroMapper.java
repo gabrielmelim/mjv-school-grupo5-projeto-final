@@ -3,15 +3,17 @@ package br.com.groupfive.jobby.mapper;
 import br.com.groupfive.jobby.dto.cadastro.CreateCadastroDTO;
 import br.com.groupfive.jobby.dto.cadastro.UpdateCadastroDTO;
 import br.com.groupfive.jobby.model.*;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import org.springframework.beans.BeanUtils;
 
 public class CadastroMapper {
 
     public static Cadastro fromCreateCadastroDTOToEntity(
         CreateCadastroDTO createCadastroDTO,
-        Endereco endereco,
         Profissao profissao
     ) {
         Cadastro cadastro = new Cadastro();
+        Endereco endereco = new Endereco();
         PretencaoSalarial pretencaoSalarial = new PretencaoSalarial();
         Celular celularPessoal = new Celular();
         Celular celularProfissional = new Celular();
@@ -32,6 +34,7 @@ public class CadastroMapper {
         cadastro.setCelularProfissional(celularProfissional);
         cadastro.setProfissao(profissao);
         cadastro.setHabilidades(createCadastroDTO.habilidades());
+        BeanUtils.copyProperties(createCadastroDTO.endereco(), endereco);
         cadastro.setEndereco(endereco);
         return cadastro;
     }
@@ -39,7 +42,6 @@ public class CadastroMapper {
     public static void fromUpdateCadastroDTOToEntity(
             Cadastro cadastro,
             UpdateCadastroDTO updateCadastroDTO,
-            Endereco endereco,
             Profissao profissao
     ) {
         PretencaoSalarial pretencaoSalarial = new PretencaoSalarial();
@@ -61,6 +63,5 @@ public class CadastroMapper {
         celularProfissional.setNumero(updateCadastroDTO.numeroCelularProfissional());
         cadastro.setCelularProfissional(celularProfissional);
         cadastro.setProfissao(profissao);
-        cadastro.setEndereco(endereco);
     }
 }

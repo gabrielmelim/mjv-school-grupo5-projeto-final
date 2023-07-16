@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface IEnderecoController<T> {
     ResponseEntity<EnderecoDTO> findById(T id);
-    ResponseEntity<EnderecoDTO> create(CreateEnderecoDTO createEnderecoDTO);
+//    ResponseEntity<EnderecoDTO> create(CreateEnderecoDTO createEnderecoDTO);
     ResponseEntity update(UpdateEnderecoDTO updateEnderecoDTO, T id);
-    ResponseEntity deleteById(T id);
+//    ResponseEntity deleteById(T id);
 }

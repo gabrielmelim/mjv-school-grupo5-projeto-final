@@ -14,7 +14,6 @@ public class Cidade {
     @Setter(AccessLevel.NONE)
     @Column(name = "id_cidade")
     private Integer idCidade;
-
     private String nome;
     private String estado;
     private String sigla;
