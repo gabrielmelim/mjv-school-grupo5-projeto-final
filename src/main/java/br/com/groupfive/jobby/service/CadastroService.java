@@ -6,10 +6,8 @@ import br.com.groupfive.jobby.dto.cadastro.UpdateCadastroDTO;
 import br.com.groupfive.jobby.mapper.CadastroMapper;
 import br.com.groupfive.jobby.model.Cadastro;
 import br.com.groupfive.jobby.repository.CadastroRepository;
-import br.com.groupfive.jobby.repository.EnderecoRepository;
 import br.com.groupfive.jobby.repository.ProfissaoRepository;
 import br.com.groupfive.jobby.service.interfaces.ICadastroService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +20,6 @@ public class CadastroService implements ICadastroService<Integer> {
     CadastroRepository cadastroRepository;
     @Autowired
     ProfissaoRepository profissaoRepository;
-    @Autowired
-    EnderecoRepository enderecoRepository;
 
     @Override
     public CadastroDTO findById(Integer id) {
@@ -42,10 +38,12 @@ public class CadastroService implements ICadastroService<Integer> {
 
     @Override
     public CadastroDTO create(CreateCadastroDTO createCadastroDTO) {
-        Cadastro cadastroModel = CadastroMapper
-                .fromCreateCadastroDTOToEntity(createCadastroDTO,
-                enderecoRepository.findById(createCadastroDTO.idEndereco()).get(),
-                profissaoRepository.findById(createCadastroDTO.idProfissao()).get());
+        Cadastro cadastroModel =
+            CadastroMapper
+                .fromCreateCadastroDTOToEntity(
+                createCadastroDTO,
+                profissaoRepository.findById(createCadastroDTO.idProfissao()).get()
+            );
 
         cadastroRepository.save(cadastroModel);
 
@@ -59,7 +57,6 @@ public class CadastroService implements ICadastroService<Integer> {
             CadastroMapper.fromUpdateCadastroDTOToEntity(
                 cadastro,
                 updateCadastroDTO,
-                enderecoRepository.findById(updateCadastroDTO.idEndereco()).get(),
                 profissaoRepository.findById(updateCadastroDTO.idProfissao()).get()
             );
             cadastroRepository.save(cadastro);

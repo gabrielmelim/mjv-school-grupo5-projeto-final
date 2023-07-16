@@ -1,5 +1,7 @@
 package br.com.groupfive.jobby.dto.cadastro;
 
+import br.com.groupfive.jobby.dto.endereco.CreateEnderecoDTO;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,5 +20,5 @@ public record CreateCadastroDTO(
     Double pretensaoMax,
     List habilidades,
     Integer idProfissao,
-    Integer idEndereco
+    CreateEnderecoDTO endereco
 ) {}

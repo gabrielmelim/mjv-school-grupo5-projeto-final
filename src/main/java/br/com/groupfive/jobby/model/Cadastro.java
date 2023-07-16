@@ -56,7 +56,7 @@ public class Cadastro {
     })
     private Celular celularProfissional;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_profissao")
     private Profissao profissao;
 
@@ -66,10 +66,7 @@ public class Cadastro {
     @ElementCollection
     private List<String> habilidades;
 
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn (name = "id_endereco")
+    @Embedded
     private Endereco endereco;
-
-
 }
 

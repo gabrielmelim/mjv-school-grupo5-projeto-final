@@ -1,5 +1,6 @@
 package br.com.groupfive.jobby.dto.experiencia;
 
+import br.com.groupfive.jobby.dto.profissao.ProfissaoDTO;
 import br.com.groupfive.jobby.model.Experiencia;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public record ExperienciaDTO (
     String regimeContratacao,
     String nomeEmpresa,
     Integer idCadastro,
-    Integer idProfissao
+    ProfissaoDTO profissao
 )
 {
     public static ExperienciaDTO fromModel(Experiencia experiencia) {
@@ -26,7 +27,7 @@ public record ExperienciaDTO (
             experiencia.getRegimeContratacao().name(),
             experiencia.getNomeEmpresa(),
             experiencia.getCadastro().getIdCadastro(),
-            experiencia.getProfissao().getIdProfissao()
+            ProfissaoDTO.fromModel(experiencia.getProfissao())
         );
     }
 }

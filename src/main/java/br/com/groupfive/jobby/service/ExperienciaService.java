@@ -46,6 +46,7 @@ public class ExperienciaService implements IExperienciaService<Integer> {
         experienciaModel.setRegimeContratacao(regimeContratacao);
         experienciaRepository.save(experienciaModel);
 
+        System.out.println(experienciaModel);
         return ExperienciaDTO.fromModel(experienciaModel);
     }
 
