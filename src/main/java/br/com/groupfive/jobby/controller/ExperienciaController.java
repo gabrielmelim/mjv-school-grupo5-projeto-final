@@ -14,6 +14,7 @@ import static java.util.Objects.isNull;
 
 @RestController
 @RequestMapping("experiencia")
+@CrossOrigin(origins = "*")
 public class ExperienciaController implements IExperienciaController<Integer> {
     private final IExperienciaService<Integer> service;
 

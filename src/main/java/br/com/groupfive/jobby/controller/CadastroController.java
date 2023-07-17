@@ -20,6 +20,7 @@ import static java.util.Objects.isNull;
 
 @RestController
 @RequestMapping("cadastro")
+@CrossOrigin(origins = "*")
 public class CadastroController<T> implements ICadastroController<Integer> {
 
     private final ICadastroService<Integer> service;
