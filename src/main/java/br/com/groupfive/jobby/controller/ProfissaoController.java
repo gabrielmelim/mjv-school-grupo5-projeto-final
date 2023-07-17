@@ -4,16 +4,15 @@ import br.com.groupfive.jobby.controller.interfaces.IProfissaoController;
 import br.com.groupfive.jobby.dto.profissao.CreateProfissaoDTO;
 import br.com.groupfive.jobby.dto.profissao.ProfissaoDTO;
 import br.com.groupfive.jobby.service.interfaces.IProfissaoService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import static br.com.groupfive.jobby.utils.ResponseEntityUtils.*;
-import static br.com.groupfive.jobby.utils.ResponseEntityUtils.created;
 import static java.util.Objects.isNull;
 
 @RestController
 @RequestMapping("profissao")
+@CrossOrigin("*")
 public class ProfissaoController implements IProfissaoController<Integer> {
 
     private final IProfissaoService<Integer> service;
