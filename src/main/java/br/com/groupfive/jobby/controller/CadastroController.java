@@ -60,7 +60,6 @@ public class CadastroController<T> implements ICadastroController<Integer> {
         return isNull(dto) ? unaprocessableEntity() : created(dto);
     }
 
-    //TODO Analisar método
     @Override
     @PutMapping("/{id}")
     public ResponseEntity update(

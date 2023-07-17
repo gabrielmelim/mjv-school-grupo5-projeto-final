@@ -11,8 +11,4 @@ import java.util.Collection;
 import java.util.List;
 
 @Repository
-public interface ExperienciaRepository extends JpaRepository<Experiencia, Integer> {
-
-//    @Query("select c from Experiencia e where e.cadastro.idCadastro in ?1 and e.dataContratacao in ?2")
-
-}
+public interface ExperienciaRepository extends JpaRepository<Experiencia, Integer> {}

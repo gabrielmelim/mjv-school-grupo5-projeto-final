@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
-
-}
+public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {}
