@@ -1,34 +1,41 @@
 package br.com.groupfive.jobby.configuration;
 
-import io.swagger.v3.oas.models.ExternalDocumentation;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
-import io.swagger.v3.oas.models.info.Info;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.servers.Server;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-@Configuration
-public class SwaggerConfig {
+@OpenAPIDefinition(
+        info = @Info(
+                contact = @Contact(
+                        name = "testeName",
+                        email = "testeEmail",
+                        url = "testeUrl"
+                ),
+                description = "testeDescricao",
+                title = "testeTitle",
+                version = "testeVersion",
+                license = @License(
+                        name = "testeLicenseName",
+                        url = "testeLicenseUrl"
+                ),
+                termsOfService = "Terms of Service"
+        ),
+        servers = {
+                @Server(
+                        description = "Local DEV",
+                        url = "http://localhost:8080"
+                ),
+                @Server(
+                        description = "Local PROD",
+                        url = "urlApi "
+                )
+        }
+)
+public class SwaggerConfig extends WebMvcConfigurationSupport {
 
-    @Bean
-    public OpenAPI springOpenAPI() {
-        return new OpenAPI()
-            .info(
-                new Info()
-                    .title("Projeto Jobby")
-                    .description("Projeto Recrutamento Candidatos")
-                    .version("v0.0.1")
-                    .contact(
-                        new Contact()
-                            .name("Repositório Projeto Jobby")
-                            .url("https://github.com/gabrielmelim/mjv-school-grupo5-projeto-final-api")
-                            .email("")
-                    )
-            )
-            .externalDocs(
-                new ExternalDocumentation()
-                    .description("GitHub Integrantes")
-                    .url("https://linktr.ee/gabrielmelim121325")
-            );
-    }
+
+
 }
