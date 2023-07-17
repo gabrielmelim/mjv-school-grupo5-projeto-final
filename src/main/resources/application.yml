@@ -1,24 +1,13 @@
-# =================================
-# = Server
-# =================================
-server:
-  port: 8080
-  servlet:
-    context-path: /v1
-
-
-# =================================
-# = Datasource
-# =================================
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/jobby?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: root
-    type: com.zaxxer.hikari.HikariDataSource
-  jpa:
-    hibernate:
-      ddl-auto: update
-    jpa:
-      show-sql: true
+  profiles:
+    active: prod
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    disable-swagger-default-url: true
+    use-root-path: true
+  packagesToScan: br.com.groupfive.jobby.controller

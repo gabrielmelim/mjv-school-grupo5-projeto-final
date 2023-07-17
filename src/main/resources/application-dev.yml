@@ -1,12 +1,21 @@
 # =================================
+# = Server
+# =================================
+server:
+  port: 8080
+  servlet:
+    context-path: /v1
+
+
+# =================================
 # = Datasource
 # =================================
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://containers-us-west-30.railway.app:7942/railway?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/jobby?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: GhyrQne7UwxsRq82I4ZA
+    password: root
     type: com.zaxxer.hikari.HikariDataSource
   jpa:
     hibernate:
