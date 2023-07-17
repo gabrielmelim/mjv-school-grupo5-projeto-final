@@ -21,7 +21,7 @@ public record CadastroDTO(
         Double pretensaoMin,
         Double pretensaoMax,
         List habilidades,
-        ProfissaoDTO profissao
+        ProfissaoDTO cargoPretendido
 ) {
     public static CadastroDTO fromModel(Cadastro cadastro) {
         return new CadastroDTO(

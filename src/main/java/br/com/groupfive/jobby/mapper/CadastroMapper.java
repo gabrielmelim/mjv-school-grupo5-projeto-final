@@ -3,7 +3,6 @@ package br.com.groupfive.jobby.mapper;
 import br.com.groupfive.jobby.dto.cadastro.CreateCadastroDTO;
 import br.com.groupfive.jobby.dto.cadastro.UpdateCadastroDTO;
 import br.com.groupfive.jobby.model.*;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 
 public class CadastroMapper {

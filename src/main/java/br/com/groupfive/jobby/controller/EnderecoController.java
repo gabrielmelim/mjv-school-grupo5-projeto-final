@@ -34,13 +34,6 @@ public class EnderecoController implements IEnderecoController<Integer> {
         return isNull(dto) ? notFound() : ok(dto);
     }
 
-//    @Override
-//    @PostMapping
-//    public ResponseEntity<EnderecoDTO> create(@RequestBody CreateEnderecoDTO createEnderecoDTO) {
-//        var dto = service.create(createEnderecoDTO);
-//        return isNull(dto) ? unaprocessableEntity() : created(dto);
-//    }
-
     //TODO Analisar método
     @Override
     @PutMapping("/{id}")
@@ -51,11 +44,4 @@ public class EnderecoController implements IEnderecoController<Integer> {
         var updated = service.update(updateEnderecoDTO, id);
         return updated ? noContent(null) : notFound();
     }
-
-//    @Override
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity deleteById(@PathVariable("id") Integer id) {
-//        var deleted = service.deleteById(id);
-//        return deleted ? noContent(null) : notFound();
-//    }
 }
