@@ -1,12 +1,15 @@
 package br.com.groupfive.jobby.controller;
 
 import br.com.groupfive.jobby.controller.interfaces.IProfissaoController;
+import br.com.groupfive.jobby.dto.cidade.CidadeDTO;
 import br.com.groupfive.jobby.dto.profissao.CreateProfissaoDTO;
 import br.com.groupfive.jobby.dto.profissao.ProfissaoDTO;
 import br.com.groupfive.jobby.service.interfaces.IProfissaoService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static br.com.groupfive.jobby.utils.ResponseEntityUtils.*;
 import static br.com.groupfive.jobby.utils.ResponseEntityUtils.created;
@@ -23,8 +26,10 @@ public class ProfissaoController implements IProfissaoController<Integer> {
     }
 
     @GetMapping()
-    public String status() {
-        return "ok";
+    @Override
+    public ResponseEntity<List<ProfissaoDTO>> findAll() {
+        List<ProfissaoDTO> listDto = service.findAll();
+        return listDto.isEmpty() ? notFound() : ok(listDto);
     }
 
     @Override
