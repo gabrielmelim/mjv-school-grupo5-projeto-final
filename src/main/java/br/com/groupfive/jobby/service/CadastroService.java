@@ -9,10 +9,12 @@ import br.com.groupfive.jobby.repository.CadastroRepository;
 import br.com.groupfive.jobby.repository.CidadeRepository;
 import br.com.groupfive.jobby.repository.ProfissaoRepository;
 import br.com.groupfive.jobby.service.interfaces.ICadastroService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CadastroService implements ICadastroService<Integer> {
@@ -32,11 +34,6 @@ public class CadastroService implements ICadastroService<Integer> {
         }else{
             return null;
         }
-    }
-
-    @Override
-    public List<CadastroDTO> findByHabilidade(String habilidade) {
-        return null;
     }
 
     @Override

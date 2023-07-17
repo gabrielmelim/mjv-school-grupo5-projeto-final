@@ -37,13 +37,6 @@ public class CadastroController<T> implements ICadastroController<Integer> {
     }
 
     @Override
-    @GetMapping(params = "habilidade")
-    public ResponseEntity<List<CadastroDTO>> findByHabilidade(@PathParam("habilidade") String habilidade) {
-        var dtoList = service.findByHabilidade(habilidade);
-        return isNull(dtoList) ? notFound() : ok(dtoList);
-    }
-
-    @Override
     @PostMapping
     public ResponseEntity<CadastroDTO> create(@RequestBody CreateCadastroDTO createCadastroDTO) {
         var dto = service.create(createCadastroDTO);

@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface ICadastroController<T> {
     ResponseEntity<CadastroDTO> findById(T id);
-    ResponseEntity<List<CadastroDTO>> findByHabilidade(String habilidade);
     ResponseEntity<CadastroDTO> create(CreateCadastroDTO createCadastroDTO);
     ResponseEntity update(UpdateCadastroDTO updateCadastroDTO, T id);
     ResponseEntity deleteById(T id);
